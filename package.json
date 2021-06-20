@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4"
+  },
+  "name": "fe-learn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:KudouRan/Front-End-topic.git",
+  "author": "catlair <catlair@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  }
+}
