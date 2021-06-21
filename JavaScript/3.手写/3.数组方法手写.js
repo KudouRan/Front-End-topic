@@ -1,6 +1,6 @@
-function forEach(array, callbackfn) {
+function forEach(array, callbackfn, thisArg) {
   for (let i = 0; i < array.length; i++) {
-    callbackfn(array[i], i, array);
+    callbackfn.call(thisArg, array[i], i, array);
   }
 }
 
@@ -14,15 +14,28 @@ function push(array, ...items) {
 }
 
 function pop(array) {
-  if (array.length < 1) {
+  const len = array.length;
+  if (len < 1) {
     return undefined;
   }
-  const res = array[array.length - 1];
-  --array.length;
+  const newLen = len - 1;
+  const res = array[newLen];
+  // 不能直接将长度变短来删除最后一个，这样在处理类数组时没有效果
+  delete array[newLen];
+  array.length = newLen;
   return res;
 }
 
-function filter() {}
+function filter(array, predicate, thisArg) {
+  const newArray = [];
+  for (let index = 0; index < array.length; index++) {
+    const value = array[index];
+    if (predicate.call(thisArg, value, index, array)) {
+      newArray.push(value);
+    }
+  }
+  return newArray;
+}
 
 function sort() {}
 
